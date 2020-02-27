@@ -18,7 +18,8 @@ const plugins = {
 	eos:new (require('@walletpack/eosio').default)(),
 	trx:new (require('@walletpack/tron').default)(),
 	btc:new (require('@walletpack/bitcoin').default)(),
-	eth:new (require('@walletpack/ethereum').default)()
+	eth:new (require('@walletpack/ethereum').default)(),
+	ppy:new (require('@walletpack/peerplays').default)(),
 }
 
 plugins.trx.init();
