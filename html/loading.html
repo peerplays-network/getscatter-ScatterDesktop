@@ -11,6 +11,7 @@
 			margin:0;
 			background: #0799ff;
 			color:#fff;
+			font-family: 'Helvetica','Segoe UI','Roboto', sans-serif;
 		}
 
 		div, figure, section, nav, article, input, textarea, h1, h2 {
@@ -100,11 +101,9 @@
 	<script>
 		const {ipcRenderer} = window.require('electron');
 
-		ipcRenderer.on('hashstat', (_, {hash, verified, total}) => {
-			document.getElementById('status').innerHTML = `
-				<span>Verifying file ${verified} of ${total}</span>
-			`;
-		})
+		ipcRenderer.on('progress_event', (_, msg) => {
+			document.getElementById('status').innerHTML = `<span>${msg}</span>`;
+		});
 
 		document.addEventListener('keydown', e => {
 			if(e.which === 123) ipcRenderer.send('loaderconsole')

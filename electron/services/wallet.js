@@ -39,6 +39,7 @@ const init = () => {
 
 const setScatter = (_s) => scatter = JSON.parse(JSON.stringify(_s));
 const getScatter = () => scatter ? JSON.parse(JSON.stringify(scatter)) : null;
+const getRawData = () => storage.getScatter();
 
 const exists = () => !!scatter;
 
@@ -152,6 +153,8 @@ const getPrivateKeyForSigning = async (keypairId, blockchain) => {
 
 	// Legacy scatters held private keys for identities in hex format already.
 	if(typeof decryptedKey === 'string') return decryptedKey;
+	// Might not be a true buffer.
+	if(typeof decryptedKey === 'object' && decryptedKey.hasOwnProperty('data')) decryptedKey = decryptedKey.data;
 
 	return plugins[blockchain].bufferToHexPrivate(decryptedKey);
 }
@@ -306,6 +309,7 @@ const EXPORTS = {
 	updateScatter,
 	setScatter,
 	getScatter,
+	getRawData,
 	sign,
 	getPrivateKey,
 	reloading,
