@@ -300,6 +300,7 @@ const availableBlockchains = () => ({
 	ETH:'eth',
 	TRX:'trx',
 	BTC:'btc',
+	PPY:'ppy'
 });
 
 const EXPORTS = {
